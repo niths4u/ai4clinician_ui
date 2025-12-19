@@ -510,6 +510,52 @@
             font-size: 11px;
             color: var(--text-gray);
         }
+
+        /* Pitch Footer */
+        .pitch-footer {
+            background: #1e293b;
+            color: white;
+            padding: 40px 24px;
+            flex-shrink: 0;
+            display: none;
+            /* Hidden by default */
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .pitch-column h3 {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #94a3b8;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .pitch-column h2 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: white;
+        }
+
+        .pitch-column p {
+            font-size: 13px;
+            line-height: 1.5;
+            color: #cbd5e1;
+            font-style: italic;
+            border-left: 3px solid var(--primary);
+            padding-left: 12px;
+        }
     </style>
 </head>
 
@@ -518,6 +564,14 @@
     <!-- 1. Top Bar: Persona Switcher -->
     <div class="top-bar">
         <div style="opacity: 0.8;">Demo Mode: Multi-Persona Evaluation</div>
+        <div style="flex:1; display:flex; justify-content:center;">
+            <button onclick="togglePitch()"
+                style="background:rgba(255,255,255,0.2); border:1px solid rgba(255,255,255,0.4); color:white; padding:4px 12px; border-radius:12px; font-size:11px; cursor:pointer;"
+                onmouseover="this.style.background='rgba(255,255,255,0.3)'"
+                onmouseout="this.style.background='rgba(255,255,255,0.2)'">
+                <i class="fa-solid fa-lightbulb"></i> Our Vision
+            </button>
+        </div>
         <div class="persona-selector">
             <span>Viewing as: </span>
             <select id="personaSelect" onchange="switchPersona()">
@@ -614,6 +668,26 @@
         </div>
 
     </div>
+
+    <!-- Pitch Section -->
+    <section class="pitch-footer">
+        <div class="pitch-column">
+            <h3>The Vision</h3>
+            <h2>Intelligence, Not Input</h2>
+            <p>"Clinicians need an HMS that understands their data, not one that just feeds on it."</p>
+        </div>
+        <div class="pitch-column">
+            <h3>The Impact</h3>
+            <h2>Solving the Non-Productive</h2>
+            <p>"We eliminate the documentation drudgery and endless searching that causes burnout."</p>
+        </div>
+        <div class="pitch-column">
+            <h3>Why Us</h3>
+            <h2>Deep Field Expertise</h2>
+            <p>"We execute because we know this field: Proven US Healthcare AI expertise (GenAI) backed by Advanced
+                Research at NIT Calicut."</p>
+        </div>
+    </section>
 
     <!-- JavaScript Logic -->
     <script>
@@ -1004,6 +1078,17 @@
         function restoreOriginalPatient() {
             document.getElementById('backBar').style.display = 'none';
             render();
+        }
+
+        function togglePitch() {
+            const footer = document.querySelector('.pitch-footer');
+            if (footer.style.display === 'grid') {
+                footer.style.display = 'none';
+                // optional: scroll to top
+            } else {
+                footer.style.display = 'grid';
+                footer.scrollIntoView({ behavior: 'smooth' });
+            }
         }
 
         function runAIFormatter() {
